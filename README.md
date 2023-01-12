@@ -22,6 +22,7 @@ Once the node has been restarted, it will wait for it to fully start and finish 
 4. Install the requirements - `pip3 install -r requirements.txt`
 5. Deactivate the environment - `deactivate`
 6. Run the script - `env/bin/python3 main.py`
+7. **OPTIONAL** - If you want to automatically run the script every day, you can set it up in cron. Enter `crontab -e` and add a line like this ```0 6 * * * /home/vmvelev/flux-node-updater/env/bin/python3 main.py```
 
 Once you run the script, it will go over the configuration first. You will have to enter the following details for all of your nodes:
 
