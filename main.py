@@ -109,9 +109,12 @@ def upgrade_node(
         client.close()
         today = datetime.datetime.now().date()
         file = open(f"update_times.json", "w")
-        json_obj = json.loads(file.read())
+        try:
+            json_obj = json.loads(file.read())
+        except:
+            json_obj = {}
         json_obj[node_name] = str(today)
-        file.write(json_obj)
+        file.write(json.dumps(json_obj, indent=4))
         file.close()
         logging.info("Update finished. Waiting for node to restart.")
         while check_if_restart_finished(node_real_ip) == "not ready":
