@@ -108,12 +108,15 @@ def upgrade_node(
     if "UPDATE FINISHED" in str(output):
         client.close()
         today = datetime.datetime.now().date()
-        file = open(f"update_times.json", "w")
+        file = open(f"update_times.json", "r")
         try:
             json_obj = json.loads(file.read())
+            file.close()
         except:
             json_obj = {}
         json_obj[node_name] = str(today)
+        # print(json_obj)
+        file = open(f"update_times.json", "w")
         file.write(json.dumps(json_obj, indent=4))
         file.close()
         logging.info("Update finished. Waiting for node to restart.")
